@@ -1,0 +1,2 @@
+exports.STATUS_COMPLETE = "COMPLETE";
+exports.STATUS_CANCEL = "CANCEL";
