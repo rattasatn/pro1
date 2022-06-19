@@ -25,6 +25,7 @@ exports.createProduct = async (req, res, next) => {
       quantity,
       productPic: image,
       brand,
+      customerId: customer.id,
     });
     res.status(200).json({ product });
   } catch (err) {

@@ -8,6 +8,8 @@ const errorMiddleware = require("./middlewares/error");
 const customerRouter = require("./routes/customerRoute");
 const adminRouter = require("./routes/adminRoute");
 const productRouter = require("./routes/productRoute");
+const cartRouter = require("./routes/cartRoute");
+const orderRouter = require("./routes/orderRoute");
 const authenticate = require("./middlewares/authenticate");
 
 // const { sequelize } = require("./models");
@@ -22,6 +24,8 @@ app.use("/auth", authRouter);
 app.use("/product", productRouter);
 app.use("/customer", authenticate, customerRouter);
 app.use("/admin", authenticate, adminRouter);
+app.use("/cart", authenticate, cartRouter);
+app.use("/order", authenticate, orderRouter);
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
 const port = process.env.PORT || 8000;

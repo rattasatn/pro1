@@ -33,29 +33,22 @@ module.exports = (sequelize, DataTypes) => {
     { underscored: true }
   );
   Product.associate = (models) => {
-    Product.hasMany(models.Like, {
-      foreignKey: {
-        name: "ProductId",
-        allowNull: false,
-      },
-      onDelete: "RESTRICT",
-      onUpdate: "RESTRICT",
-    });
-    Product.hasMany(models.Image, {
-      foreignKey: {
-        name: "productId",
-        allowNull: false,
-      },
-      onDelete: "RESTRICT",
-      onUpdate: "RESTRICT",
-    });
     Product.hasMany(models.OrderItem, {
       foreignKey: {
         name: "productId",
         allowNull: false,
       },
-      onDelete: "RESTRICT",
-      onUpdate: "RESTRICT",
+    });
+    Product.hasMany(models.Cart, {
+      foreignKey: {
+        name: "productId",
+      },
+    });
+    Product.belongsTo(models.Customer, {
+      foreignKey: {
+        name: "customerId",
+        allowNull: false,
+      },
     });
   };
   return Product;

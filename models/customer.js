@@ -50,16 +50,18 @@ module.exports = (sequelize, DataTypes) => {
         name: "customerId",
         allowNull: false,
       },
-      onDelete: "RESTRICT",
-      onUpdate: "RESTRICT",
     });
-    Customer.hasMany(models.Like, {
+
+    Customer.hasMany(models.Product, {
       foreignKey: {
         name: "customerId",
         allowNull: false,
       },
-      onDelete: "RESTRICT",
-      onUpdate: "RESTRICT",
+    });
+    Customer.hasMany(models.Cart, {
+      foreignKey: {
+        name: "customerId",
+      },
     });
   };
   return Customer;

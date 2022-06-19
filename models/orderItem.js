@@ -25,16 +25,12 @@ module.exports = (sequelize, DataTypes) => {
         name: "productId",
         allowNull: false,
       },
-      onDelete: "RESTRICT",
-      onUpdate: "RESTRICT",
     });
     OrderItem.belongsTo(models.Order, {
       foreignKey: {
-        name: "oderId",
-        allowNull: false,
+        name: "orderId",
+        allowNull: true,
       },
-      onDelete: "RESTRICT",
-      onUpdate: "RESTRICT",
     });
   };
   return OrderItem;

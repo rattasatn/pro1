@@ -1,4 +1,8 @@
-const { STATUS_COMPLETE, STATUS_CANCEL } = require("../config/constants");
+const {
+  STATUS_COMPLETE,
+  STATUS_CANCEL,
+  STATUS_PENDING,
+} = require("../config/constants");
 module.exports = (sequelize, DataTypes) => {
   const Order = sequelize.define(
     "Order",
@@ -11,8 +15,12 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       statusPay: {
-        type: DataTypes.ENUM(STATUS_COMPLETE, STATUS_CANCEL),
+        type: DataTypes.ENUM(STATUS_COMPLETE, STATUS_CANCEL, STATUS_PENDING),
         allowNull: false,
+        defaultValue: STATUS_PENDING,
+      },
+      slip: {
+        type: DataTypes.STRING,
       },
     },
     { underscored: true }
@@ -23,16 +31,12 @@ module.exports = (sequelize, DataTypes) => {
         name: "orderId",
         allowNull: false,
       },
-      onDelete: "RESTRICT",
-      onUpdate: "RESTRICT",
     });
     Order.belongsTo(models.Customer, {
       foreignKey: {
         name: "customerId",
         allowNull: false,
       },
-      onDelete: "RESTRICT",
-      onUpdate: "RESTRICT",
     });
   };
   return Order;
