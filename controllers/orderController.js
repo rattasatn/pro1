@@ -28,6 +28,8 @@ exports.createOrder = async (req, res, next) => {
       slip,
     });
 
+    order.statusPay = "COMPLETE";
+    await order.save();
     res.status(201).json({ order });
   } catch (err) {
     next(err);

@@ -90,9 +90,9 @@ exports.UpdateProduct = async (req, res, next) => {
     if (!product) {
       createError("product not found", 400);
     }
-    if (product.customerId !== req.customer.id) {
-      createError("you are not authorized to update this product", 401);
-    }
+    // if (product.customerId !== req.customer.id) {
+    //   createError("you are not authorized to update this product", 401);
+    // }
     const { productName, brand, price, forGender, quantity } = req.body;
     await product.update({
       productName,
